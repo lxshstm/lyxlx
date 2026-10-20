@@ -4,7 +4,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   vite: {
-    base: "/pixel-perfect-picture-481/",
+    base: "/lyxlx/",
   },
   nitro: false,
   tanstackStart: {
