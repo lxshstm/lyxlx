@@ -161,7 +161,7 @@ export function Chapter1({ state, update, toast, next }: ChapterProps) {
         <section className="paper-card mt-5 p-4">
           {!both ? (
             <div className="flex items-center justify-center gap-2 py-4 text-sm text-muted-foreground">
-              <Clock className="size-4" /> 日历被锁住了……找到两只时钟才能打开它（{clocks.filter(Boolean).length}/2）
+              <Clock className="size-4" /> 日历被锁住了……（{clocks.filter(Boolean).length}/2）
             </div>
           ) : (
             <div className="anim-rise">

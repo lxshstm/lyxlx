@@ -23,7 +23,7 @@ export function Home({
 
       {!open ? (
         <div className="relative z-10 flex flex-col items-center gap-8 anim-rise">
-          <p className="font-display text-sm tracking-[0.3em] text-muted-foreground">寄往宿舍的生日密信</p>
+          <p className="font-display text-sm tracking-[0.3em] text-muted-foreground">第24次许愿</p>
           <button
             onClick={() => setOpen(true)}
             aria-label="打开信封"
@@ -72,7 +72,6 @@ export function Home({
             <button className="btn-love text-lg" onClick={hasSave ? onContinue : onStart}>
               {hasSave ? "继续上次的回忆" : "开启我们的回忆之旅"}
             </button>
-            <p className="text-xs text-muted-foreground">建议戴上耳机，也可以和我打着语音慢慢玩。</p>
           </div>
         </div>
       )}

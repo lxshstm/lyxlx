@@ -5,19 +5,27 @@
 import sceneMeet from "@/assets/scene-meet.jpg";
 import sceneConfess from "@/assets/scene-confess.jpg";
 import couple from "@/assets/couple.jpg";
+import gift01 from "@/assets/gifts/gift-01.jpg";
+import gift02 from "@/assets/gifts/gift-02.jpg";
+import gift03 from "@/assets/gifts/gift-03.jpg";
+import gift04 from "@/assets/gifts/gift-04.jpg";
+import gift05 from "@/assets/gifts/gift-05.jpg";
+import gift06 from "@/assets/gifts/gift-06.jpg";
+import gift07 from "@/assets/gifts/gift-07.jpg";
+import gift08 from "@/assets/gifts/gift-08.jpg";
 
-/** true = 预览模式（使用示例日期/顺序，页面顶部会显示提醒）。填完真实数据后改成 false */
-export const DEMO_MODE = true;
+/** true = 预览模式（使用示例日期/顺序，页面顶部会显示提醒）。真实日期与礼物均已填写，已关闭 */
+export const DEMO_MODE = false;
 
 export const BASIC = {
   name: "小馨",
-  title: "寄往宿舍的生日密信：我们的回忆收藏馆",
+  title: "第24次许愿：我们的回忆收藏馆",
   introLetter: [
     "亲爱的小馨：",
     "今天，有一个只属于你的秘密礼物。",
     "我偷偷把我们之间的回忆，藏进了四个小小的世界。",
     "有我们第一次见面的紧张，有我鼓起勇气告白的那一天，有我送给你的每一份心意，也有我们一起走过的很多地方。",
-    "它们被时间悄悄收藏了起来。",
+    "它们随着时间的推移，被时间悄悄收藏了起来，也被我铭记在了心底。",
     "今天，我想邀请你把它们一件件找回来。",
     "等所有回忆重新拼凑完整，还有一份特别的生日礼物在等你。",
     "准备好了吗？我的小寿星。",
@@ -36,9 +44,9 @@ export type Hotspot = {
 };
 
 export const CHAPTER1 = {
-  // 【待填写】真实日期
-  meetDate: { y: 2023, m: 5, d: 20 } as YMD,
-  confessDate: { y: 2023, m: 7, d: 7 } as YMD,
+  // 我们的两个重要日子：遇见、告白
+  meetDate: { y: 2024, m: 4, d: 8 } as YMD,
+  confessDate: { y: 2025, m: 4, d: 11 } as YMD,
   yearRange: [2018, 2026] as [number, number],
   scenes: [
     {
@@ -86,19 +94,19 @@ export type Gift = {
   icon: "watch" | "shoe" | "bag" | "briefcase" | "boot" | "camera" | "box" | "music";
   image?: string; // 可选：礼物照片路径
   text: string;
-  /** 【待填写】真实赠送顺序（1 = 最早）。不填（undefined）的礼物不会被抽中 */
+  /** 真实赠送时间顺序（1 = 最早，从 2024 年七夕到 2026 年 5 月） */
   order?: number;
 };
 
 export const GIFTS: Gift[] = [
-  { no: "01", name: "Apple Watch 手表", icon: "watch", order: 5, text: "希望我的小馨，每一天都能被时间温柔对待。" },
-  { no: "02", name: "Hello Kitty 帆布鞋", icon: "shoe", order: 2, text: "希望你穿着喜欢的鞋子，走过好多开心的日子。" },
-  { no: "03", name: "COACH 草莓包包", icon: "bag", order: 3, text: "看到草莓元素的时候，总觉得你一定会喜欢。" },
-  { no: "04", name: "COACH City 15 包", icon: "briefcase", order: 7, text: "想让你每天出门，都带着一点点我的心意。" },
-  { no: "05", name: "骆驼鞋子", icon: "boot", order: 6, text: "愿你走去的每个地方，脚下都是舒服和安心。" },
-  { no: "06", name: "拍立得相机", icon: "camera", order: 1, text: "希望我们能把更多快乐的瞬间，变成拿在手里的照片。" },
-  { no: "07", name: "郁金香针织收纳盒", icon: "box", order: 4, text: "把小东西收好，也把我的喜欢收好。" },
-  { no: "08", name: "Hello Kitty 唱片机 + 挂脖风扇", icon: "music", order: 8, text: "夏天有风，耳边有歌，身边有我。" },
+  { no: "01", name: "Apple Watch 手表", icon: "watch", image: gift01, order: 7, text: "希望我的小馨，每一天都能被时间温柔对待。" }, // 2026-01-27
+  { no: "02", name: "Hello Kitty 帆布鞋", icon: "shoe", image: gift02, order: 2, text: "希望你穿着喜欢的鞋子，走过好多开心的日子。" }, // 2024-10-31 · 第一个生日
+  { no: "03", name: "COACH 草莓包包", icon: "bag", image: gift03, order: 1, text: "看到草莓元素的时候，总觉得你一定会喜欢。" }, // 2024-08-09 · 七夕
+  { no: "04", name: "COACH City 15 包", icon: "briefcase", image: gift04, order: 8, text: "想让你每天出门，都带着一点点我的心意。" }, // 2026-05
+  { no: "05", name: "骆驼鞋子", icon: "boot", image: gift05, order: 6, text: "愿你走去的每个地方，脚下都是舒服和安心。" }, // 2025-12-30
+  { no: "06", name: "拍立得相机", icon: "camera", image: gift06, order: 4, text: "希望我们能把更多快乐的瞬间，变成拿在手里的照片。" }, // 2025-08-29
+  { no: "07", name: "郁金香针织收纳盒", icon: "box", image: gift07, order: 5, text: "把小东西收好，也把我的喜欢收好。" }, // 2025-11-19
+  { no: "08", name: "Hello Kitty 唱片机 + 挂脖风扇", icon: "music", image: gift08, order: 3, text: "夏天有风，耳边有歌，身边有我。" }, // 2025-05
 ];
 
 /* ---------------- 第三关 ---------------- */
@@ -162,7 +170,6 @@ export const FINALE = {
     "愿你永远开心，永远被爱。",
     "我爱你。",
   ],
-  // 【待填写】隐藏告白
   secret: "不管以后隔着多远，我都会一直一直朝你走过去。",
   closing: "这是我用好多晚上，一点点为你搭出来的密室。虽然隔着很远，但我的心意已经送到你身边啦。",
 };
