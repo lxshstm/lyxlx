@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Plane } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plane } from "lucide-react";
 import { CITIES, CITY_INTERLUDES, type City } from "./config";
 import { CHINA_PATH, MAP_H, MAP_W, project } from "./china-map";
 import { classifyCityTap } from "./logic";
@@ -9,14 +9,57 @@ import type { ChapterProps } from "./types";
 
 const PTS = CITIES.map((c) => project(c.lon, c.lat));
 
+/** 一座城市可有多张回忆照片：photos 优先，旧 photo 兼容，都没有则显示地名 */
+const photosOf = (city: City): string[] => city.photos?.length ? city.photos : city.photo ? [city.photo] : [];
+
 function Film({ city, index, big }: { city: City; index: number; big?: boolean }) {
+  const photos = photosOf(city);
+  const [k, setK] = useState(0);
+
+  useEffect(() => {
+    if (photos.length < 2) return;
+    const t = setInterval(() => setK((v) => (v + 1) % photos.length), 2600);
+    return () => clearInterval(t);
+  }, [photos.length]);
+
+  const step = (d: number) => {
+    if (photos.length < 2) return;
+    setK((v) => (v + d + photos.length) % photos.length);
+  };
+
   return (
     <div className={`film ${big ? "w-64" : "w-24 shrink-0"}`} style={{ transform: `rotate(${index % 2 ? 2 : -2}deg)` }}>
-      <div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm bg-sky">
-        {city.photo ? (
-          <img src={city.photo} alt={city.name} loading="lazy" className="size-full object-cover" />
+      <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm bg-sky">
+        {photos.length > 0 ? (
+          photos.map((p, i) => (
+            <img
+              key={i}
+              src={p}
+              alt={`${city.name}的回忆 ${i + 1}/${photos.length}`}
+              loading="lazy"
+              className={`film-slide ${i === k ? "film-slide-on" : ""}`}
+              onClick={big && i === k ? () => step(1) : undefined}
+            />
+          ))
         ) : (
           <span className={`font-display text-primary ${big ? "text-3xl" : "text-base"}`}>{city.name}</span>
+        )}
+        {photos.length > 1 && big && (
+          <>
+            <button type="button" aria-label="上一张" className="film-nav left-1" onClick={() => step(-1)}>
+              <ChevronLeft className="size-4" />
+            </button>
+            <button type="button" aria-label="下一张" className="film-nav right-1" onClick={() => step(1)}>
+              <ChevronRight className="size-4" />
+            </button>
+          </>
+        )}
+        {photos.length > 1 && (
+          <div className={`film-dots ${big ? "gap-1.5" : "gap-1"}`}>
+            {photos.map((_, i) => (
+              <span key={i} className={`film-dot ${i === k ? "film-dot-on" : ""} ${big ? "size-2" : "size-1.5"}`} />
+            ))}
+          </div>
         )}
       </div>
       <p className={`mt-1 text-center ${big ? "text-sm" : "text-[11px]"}`}>
@@ -33,13 +76,15 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
   const [view, setView] = useState<number | null>(null);
   const [win, setWin] = useState(count >= CITIES.length);
   const strip = useRef<HTMLDivElement>(null);
-  const used = state.hints.c3 ?? 0;
+  const used = state.hints["c3"] ?? 0;
 
   useEffect(() => {
     strip.current?.scrollTo({ left: strip.current.scrollWidth, top: strip.current.scrollHeight, behavior: "smooth" });
   }, [count]);
 
   const nextCity = CITIES[count];
+  const popupCity = popup === null ? undefined : CITIES[popup];
+  const viewedCity = view === null ? undefined : CITIES[view];
   const hints = [
     "试着回忆一下，我们是从哪里开始，一站站走到这里的？",
     nextCity ? `下一站，是${nextCity.province}的${nextCity.name}。` : "已经全部点亮啦！",
@@ -64,7 +109,8 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
     update((s) => ({ ...s, c3: { ...s.c3, count: n } }));
     setPopup(i);
     setTimeout(() => setPopup((p) => (p === i ? null : p)), 1800);
-    if (CITY_INTERLUDES[n]) setTimeout(() => toast(CITY_INTERLUDES[n]), 1900);
+    const interlude = CITY_INTERLUDES[n];
+    if (interlude) setTimeout(() => toast(interlude), 1900);
     if (n === CITIES.length) {
       update((s) => ({ ...s, unlocked: Math.max(s.unlocked, 4) }));
       setTimeout(() => {
@@ -150,6 +196,7 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
                 </svg>
                 {CITIES.map((c, i) => {
                   const p = PTS[i];
+                  if (!p) return null;
                   const lit = i < count;
                   const glow = used >= 2 && i === count;
                   return (
@@ -197,19 +244,19 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
         )}
       </main>
 
-      {popup !== null && (
+      {popup !== null && popupCity && (
         <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center">
           <div style={{ animation: "rise-in .5s ease-out both" }}>
-            <Film city={CITIES[popup]} index={popup} big />
-            <p className="mt-2 text-center text-sm">{CITIES[popup].memo}</p>
+            <Film city={popupCity} index={popup} big />
+            <p className="mt-2 text-center text-sm">{popupCity.memo}</p>
           </div>
         </div>
       )}
-      {view !== null && (
+      {view !== null && viewedCity && (
         <Modal onClose={() => setView(null)}>
           <div className="flex flex-col items-center">
-            <Film city={CITIES[view]} index={view} big />
-            <p className="mt-3 text-center text-sm">{CITIES[view].memo}</p>
+            <Film city={viewedCity} index={view} big />
+            <p className="mt-3 text-center text-sm">{viewedCity.memo}</p>
           </div>
         </Modal>
       )}

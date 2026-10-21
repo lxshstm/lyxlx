@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { BASIC } from "./config";
+import { Button } from "@/components/ui/button";
+import { Bubbu } from "./Bubbu";
+import { BASIC, BUBBU } from "./config";
 import { Floaters } from "./ui";
 
 export function Home({
@@ -24,7 +26,7 @@ export function Home({
       {!open ? (
         <div className="relative z-10 flex flex-col items-center gap-8 anim-rise">
           <p className="font-display text-sm tracking-[0.3em] text-muted-foreground">第24次许愿</p>
-          <button
+          <Button variant="ghost"
             onClick={() => setOpen(true)}
             aria-label="打开信封"
             className="group relative h-52 w-80 max-w-[86vw] [perspective:800px] transition active:scale-95"
@@ -37,21 +39,21 @@ export function Home({
             <div className="absolute inset-x-0 top-1/2 h-3 -translate-y-1/2 bg-secondary" />
             <div className="absolute left-1/2 top-1/2 h-full w-3 -translate-x-1/2 -translate-y-1/2 bg-secondary/80" />
             <div className="absolute left-1/2 top-[54%] flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-rose-grad text-2xl text-primary-foreground shadow-soft group-hover:anim-heartbeat">
-              ♥
+              {BUBBU.assets.seal ? <Bubbu name="seal" size="sm" eager /> : "♥"}
             </div>
             <span className="absolute bottom-4 right-6 font-display text-lg text-foreground/80">
               {BASIC.name}亲启
             </span>
-          </button>
+          </Button>
           <p className="text-sm text-muted-foreground">轻轻点一下信封</p>
           {hasSave && (
             <div className="flex flex-col items-center gap-2">
-              <button className="btn-love" onClick={onContinue}>
+              <Button variant="ghost" className="btn-love" onClick={onContinue}>
                 继续上次的回忆
-              </button>
-              <button className="btn-soft text-sm" onClick={() => setConfirm(true)}>
+              </Button>
+              <Button variant="ghost" className="btn-soft text-sm" onClick={() => setConfirm(true)}>
                 重新开始
-              </button>
+              </Button>
             </div>
           )}
         </div>
@@ -69,9 +71,9 @@ export function Home({
             ))}
           </div>
           <div className="mt-6 flex flex-col items-center gap-3" style={{ animation: "rise-in .6s ease-out 2.8s both" }}>
-            <button className="btn-love text-lg" onClick={hasSave ? onContinue : onStart}>
+            <Button variant="ghost" className="btn-love text-lg" onClick={hasSave ? onContinue : onStart}>
               {hasSave ? "继续上次的回忆" : "开启我们的回忆之旅"}
-            </button>
+            </Button>
           </div>
         </div>
       )}
@@ -81,10 +83,10 @@ export function Home({
           <div className="paper-card w-full max-w-xs p-5 text-center">
             <p>真的要从最开始重新走一遍吗？</p>
             <div className="mt-4 flex justify-center gap-3">
-              <button className="btn-soft" onClick={() => setConfirm(false)}>
+              <Button variant="ghost" className="btn-soft" onClick={() => setConfirm(false)}>
                 再想想
-              </button>
-              <button
+              </Button>
+              <Button variant="ghost"
                 className="btn-love"
                 onClick={() => {
                   setConfirm(false);
@@ -92,7 +94,7 @@ export function Home({
                 }}
               >
                 重新开始
-              </button>
+              </Button>
             </div>
           </div>
         </div>

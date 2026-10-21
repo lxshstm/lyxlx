@@ -7,7 +7,7 @@ export const getRouter = () => {
 
   const router = createRouter({
     routeTree,
-    // Match both Lovable (/) and GitHub Pages (/pixel-perfect-picture-481/).
+    // Match both Lovable (/) and GitHub Pages (/lyxlx/) subpath deploys.
     basepath: import.meta.env.BASE_URL,
     context: { queryClient },
     scrollRestoration: true,

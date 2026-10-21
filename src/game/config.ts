@@ -13,6 +13,18 @@ import gift05 from "@/assets/gifts/gift-05.jpg";
 import gift06 from "@/assets/gifts/gift-06.jpg";
 import gift07 from "@/assets/gifts/gift-07.jpg";
 import gift08 from "@/assets/gifts/gift-08.jpg";
+import bubbuSeal from "@/assets/bubbu/bubbu-seal.gif";
+import bubbuCurator from "@/assets/bubbu/bubbu-curator.gif";
+import bubbuPeek from "@/assets/bubbu/bubbu-peek.gif";
+import bubbuSleep from "@/assets/bubbu/bubbu-sleep.gif";
+import bubbuHintFirst from "@/assets/bubbu/bubbu-hint-first.gif";
+import bubbuHintSecond from "@/assets/bubbu/bubbu-hint-second.gif";
+import bubbuToast from "@/assets/bubbu/bubbu-toast.gif";
+import bubbuHandhold from "@/assets/bubbu/bubbu-handhold.gif";
+import bubbuCelebrate from "@/assets/bubbu/bubbu-celebrate.gif";
+import bubbuHug from "@/assets/bubbu/bubbu-hug.gif";
+import bubbuFinale from "@/assets/bubbu/bubbu-finale.gif";
+import bubbuShy from "@/assets/bubbu/bubbu-shy.gif";
 
 /** true = 预览模式（使用示例日期/顺序，页面顶部会显示提醒）。真实日期与礼物均已填写，已关闭 */
 export const DEMO_MODE = false;
@@ -93,6 +105,7 @@ export type Gift = {
   name: string;
   icon: "watch" | "shoe" | "bag" | "briefcase" | "boot" | "camera" | "box" | "music";
   image?: string; // 可选：礼物照片路径
+  givenAt?: string; // 可选：纪念标签；不要填写会透露排序答案的完整日期
   text: string;
   /** 真实赠送时间顺序（1 = 最早，从 2024 年七夕到 2026 年 5 月） */
   order?: number;
@@ -118,7 +131,8 @@ export type City = {
   /** 标签相对城市点的偏移（像素），避免手机上相邻城市重叠 */
   dx: number;
   dy: number;
-  photo?: string; // 可选：回忆照片路径
+  photo?: string; // 可选：回忆照片路径（单图，向后兼容）
+  photos?: string[]; // 可选：多张回忆照片，配置后弹窗与胶片栏自动轮播
   memo: string;
 };
 
@@ -172,4 +186,33 @@ export const FINALE = {
   ],
   secret: "不管以后隔着多远，我都会一直一直朝你走过去。",
   closing: "这是我用好多晚上，一点点为你搭出来的密室。虽然隔着很远，但我的心意已经送到你身边啦。",
+};
+
+/* 官方一二布布素材（爱给网免费 GIF，个人非商用）：缺少图片时贴纸静默隐藏。
+ * 如需替换某张贴纸，把新 GIF 命名后改这里的 import 即可。
+ */
+export type BubbuName = "seal" | "curator" | "peek" | "sleep" | "sit" | "hintFirst" | "hintSecond" | "toast" | "handhold" | "celebrate" | "hug" | "finale" | "shy";
+export const BUBBU: {
+  assets: Partial<Record<BubbuName, string>>;
+  showcase: readonly { index: number; name: BubbuName }[];
+  celebration: readonly BubbuName[];
+  hints: readonly BubbuName[];
+} = {
+  assets: {
+    seal: bubbuSeal, // 一二抱着布布（首页封蜡）
+    curator: bubbuCurator, // 布布举望远镜巡馆（第二关馆长）
+    peek: bubbuPeek, // 站在垫子上吐舌（展柜 02）
+    sleep: bubbuSleep, // 窝在坐垫刷手机（展柜 07）
+    hintFirst: bubbuHintFirst, // “准备施法”（第一次提示）
+    hintSecond: bubbuHintSecond, // 戴帽看书（第二次提示）
+    toast: bubbuToast, // 吐舌卖萌（Toast 头像）
+    handhold: bubbuHandhold, // 牵手向前走（挑战弹窗）
+    celebrate: bubbuCelebrate, // 反戴鸭舌帽奔跑（庆祝粒子）
+    hug: bubbuHug, // 正面拥抱（庆祝粒子）
+    finale: bubbuFinale, // 并肩依偎（终章礼盒）
+    shy: bubbuShy, // wink 吐舌（隐藏爱心）
+  },
+  showcase: [{ index: 1, name: "peek" }, { index: 6, name: "sleep" }],
+  celebration: ["celebrate", "hug"],
+  hints: ["hintFirst", "hintSecond"],
 };
