@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
-import { CHAPTER1, DEMO_MODE, type YMD } from "./config";
+import { CHAPTER1, DEMO_MODE, type Hotspot, type YMD } from "./config";
 import { daysInMonth, sameDate } from "./logic";
 import { sfx } from "./audio";
-import { Celebrate, Floaters, HintBar } from "./ui";
+import { Celebrate, Floaters, HintBar, Modal } from "./ui";
 import type { ChapterProps } from "./types";
 
 const fmt = (d: YMD) => `${d.y} 年 ${d.m} 月 ${d.d} 日`;
@@ -13,6 +13,7 @@ export function Chapter1({ state, update, toast, next }: ChapterProps) {
   const [bubble, setBubble] = useState<{ scene: number; id: string; text: string } | null>(null);
   const [spinning, setSpinning] = useState<string | null>(null);
   const [petals, setPetals] = useState(false);
+  const [detail, setDetail] = useState<NonNullable<Hotspot["detail"]> | null>(null);
   const [win, setWin] = useState(state.c1.solved);
   const { clocks } = state.c1;
   const both = clocks[0] && clocks[1];
@@ -21,7 +22,7 @@ export function Chapter1({ state, update, toast, next }: ChapterProps) {
   const hints = [...CHAPTER1.hints];
   if (DEMO_MODE) hints[1] += `（预览答案：${fmt(CHAPTER1.meetDate)} / ${fmt(CHAPTER1.confessDate)}）`;
 
-  const tapHotspot = (scene: number, id: string, text: string, clock?: boolean) => {
+  const tapHotspot = (scene: number, id: string, text: string, clock?: boolean, detail?: Hotspot["detail"]) => {
     if (clock) {
       sfx.found();
       setSpinning(id);
@@ -42,6 +43,10 @@ export function Chapter1({ state, update, toast, next }: ChapterProps) {
       return;
     }
     sfx.tap();
+    if (detail) {
+      setDetail(detail);
+      return;
+    }
     setBubble({ scene, id, text });
   };
 
@@ -110,7 +115,7 @@ export function Chapter1({ state, update, toast, next }: ChapterProps) {
                       <button
                         key={h.id}
                         aria-label={isClock ? "时钟" : h.id}
-                        onClick={() => tapHotspot(si, h.id, h.text, h.clock)}
+                        onClick={() => tapHotspot(si, h.id, h.text, h.clock, h.detail)}
                         className={`absolute rounded-xl transition active:scale-95 ${
                           found ? "shadow-glow" : "hover:bg-card/15"
                         } ${spinning === h.id ? "anim-spin-once" : ""}`}
@@ -192,6 +197,15 @@ export function Chapter1({ state, update, toast, next }: ChapterProps) {
         used={used}
         onUse={() => update((s) => ({ ...s, hints: { ...s.hints, c1: Math.min(2, used + 1) } }))}
       />
+
+      {detail && (
+        <Modal onClose={() => setDetail(null)}>
+          <img src={detail.image} alt={detail.title} className="w-full rounded-xl shadow-soft" />
+          <p className="museum-detail-label">告白现场 · 细节</p>
+          <p className="font-display text-lg">{detail.title}</p>
+          <p className="mt-3 border-t border-border pt-3 text-sm leading-loose">“{detail.text}”</p>
+        </Modal>
+      )}
     </>
   );
 }

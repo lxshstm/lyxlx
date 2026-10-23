@@ -3,12 +3,14 @@ import { FINALE } from "./config";
 import { sfx } from "./audio";
 import { Burst, Floaters, Modal } from "./ui";
 import { Bubbu } from "./Bubbu";
+import { Theater } from "./Theater";
 import { Button } from "@/components/ui/button";
 
 export function Finale({ onRestart }: { onRestart: () => void }) {
   const [phase, setPhase] = useState<"box" | "opening" | "open">("box");
   const [secret, setSecret] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const [theater, setTheater] = useState(false);
   const [big, setBig] = useState<number | null>(null);
   const [slide, setSlide] = useState(0);
   const bigPhoto = big === null ? undefined : FINALE.carousel[big];
@@ -67,18 +69,29 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
     <main className="relative flex-1 bg-celebrate">
       <Floaters count={18} kind="fall" />
       <div className="relative z-10 mx-auto max-w-xl px-4 py-10">
-        <h1 className="text-center font-display text-3xl leading-snug anim-rise">生日快乐，我最爱的小馨！</h1>
+        <h1 className="text-center font-display text-3xl leading-snug anim-rise">
+          生日快乐，我最爱的小馨！
+        </h1>
 
         <div className="relative mt-8">
-          <div ref={track} className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none]">
+          <div
+            ref={track}
+            className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none]"
+          >
             {FINALE.carousel.map((p, i) => (
               <div key={i} className="w-full shrink-0 snap-center px-6">
-                <Button variant="ghost"
+                <Button
+                  variant="ghost"
                   onClick={() => setBig(i)}
                   className="film mx-auto block h-auto w-full max-w-xs whitespace-normal"
                   style={{ transform: `rotate(${i % 2 ? 2 : -2}deg)` }}
                 >
-                  <img src={p.src} alt={p.caption} loading="lazy" className="aspect-square w-full rounded-sm object-cover" />
+                  <img
+                    src={p.src}
+                    alt={p.caption}
+                    loading="lazy"
+                    className="aspect-square w-full rounded-sm object-cover"
+                  />
                   <p className="mt-2 font-display text-sm">{p.caption}</p>
                 </Button>
               </div>
@@ -86,7 +99,8 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
           </div>
           <div className="mt-3 flex justify-center gap-2">
             {FINALE.carousel.map((_, i) => (
-              <Button variant="ghost"
+              <Button
+                variant="ghost"
                 key={i}
                 onClick={() => setSlide(i)}
                 aria-label={`第 ${i + 1} 张`}
@@ -99,19 +113,41 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
         <article className="paper-card mt-10 p-6 leading-loose">
           <h2 className="mb-3 text-center font-display text-xl">《{FINALE.letterTitle}》</h2>
           {FINALE.letter.map((l, i) => (
-            <p key={i} className={i === 0 ? "font-display" : i >= FINALE.letter.length - 3 ? "text-right font-display" : "indent-8"}>
+            <p
+              key={i}
+              className={
+                i === 0
+                  ? "font-display"
+                  : i >= FINALE.letter.length - 3
+                    ? "text-right font-display"
+                    : "indent-8"
+              }
+            >
               {l}
             </p>
           ))}
         </article>
 
-        <p className="mt-10 text-center text-sm leading-relaxed text-muted-foreground">{FINALE.closing}</p>
+        <p className="mt-10 text-center text-sm leading-relaxed text-muted-foreground">
+          {FINALE.closing}
+        </p>
 
         <div className="mt-6 flex flex-col items-center gap-6">
+          <Button
+            variant="ghost"
+            className="btn-love"
+            onClick={() => {
+              sfx.bloom();
+              setTheater(true);
+            }}
+          >
+            布布一二小剧场！
+          </Button>
           <Button variant="ghost" className="btn-soft" onClick={() => setConfirm(true)}>
             再陪我回忆一次
           </Button>
-          <Button variant="ghost"
+          <Button
+            variant="ghost"
             aria-label="小爱心"
             onClick={() => {
               sfx.bloom();
@@ -119,8 +155,7 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
             }}
             className="secret-trigger relative size-11 text-xs text-primary/40 transition hover:text-primary"
           >
-            <Bubbu name="shy" size="sm" className="secret-companion" />
-            ♥
+            <Bubbu name="shy" size="sm" className="secret-companion" />♥
           </Button>
         </div>
       </div>
@@ -134,6 +169,7 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
           </div>
         </Modal>
       )}
+      {theater && <Theater onClose={() => setTheater(false)} />}
       {bigPhoto && (
         <Modal onClose={() => setBig(null)}>
           <img src={bigPhoto.src} alt={bigPhoto.caption} className="w-full rounded-lg" />

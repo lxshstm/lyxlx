@@ -27,6 +27,20 @@ describe("gift chapter", () => {
     expect(pickGifts([g("a", 1), g("b", 2), g("c")], 4)).toEqual([]);
   });
 
+  it("never picks two gifts given at the same time (same order)", () => {
+    const tied = [g("a", 1), g("b", 1), g("c", 2), g("d", 3), g("e", 4), g("f", 5)];
+    for (let k = 0; k < 80; k++) {
+      const p = pickGifts(tied, 4);
+      expect(p).toHaveLength(4);
+      expect(new Set(p.map((i) => tied[i]?.order)).size).toBe(4);
+      expect(p.includes(0) && p.includes(1)).toBe(false);
+    }
+  });
+
+  it("returns no puzzle when fewer distinct orders are configured", () => {
+    expect(pickGifts([g("a", 1), g("b", 1), g("c", 2), g("d", 2)], 3)).toEqual([]);
+  });
+
   it("orders by configured giving order, not by display number", () => {
     expect(correctGiftOrder(gifts, [0, 1, 4, 5])).toEqual([4, 1, 5, 0]);
     expect(isGiftOrderCorrect(gifts, [4, 1, 5, 0])).toBe(true);

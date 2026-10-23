@@ -56,10 +56,10 @@ export function sanitize(raw: unknown): GameState {
     };
   }
   if (r.c2) {
-    const ok = isIdxArr(r.c2.picked, GIFTS.length) && r.c2.picked!.length === 4;
+    const ok = isIdxArr(r.c2.picked, GIFTS.length) && r.c2.picked!.length === 5;
     s.c2 = {
       picked: ok ? r.c2.picked! : null,
-      order: ok && isIdxArr(r.c2.order, GIFTS.length) && r.c2.order!.length === 4 ? r.c2.order! : null,
+      order: ok && isIdxArr(r.c2.order, GIFTS.length) && r.c2.order!.length === 5 ? r.c2.order! : null,
       solved: !!r.c2.solved,
     };
   }

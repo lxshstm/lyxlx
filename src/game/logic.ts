@@ -3,15 +3,25 @@ import type { Gift, YMD } from "./config";
 export const sameDate = (a: YMD | null | undefined, b: YMD) =>
   !!a && a.y === b.y && a.m === b.m && a.d === b.d;
 
-/** Pick `n` distinct gift indices among gifts that have a configured order. */
+/** Pick `n` distinct gift indices; gifts given at the same time (same `order`) never appear together. */
 export function pickGifts(gifts: Gift[], n = 4, rand = Math.random): number[] {
   const pool = gifts.map((g, i) => (typeof g.order === "number" ? i : -1)).filter((i) => i >= 0);
-  if (pool.length < n) return [];
+  const distinctOrders = new Set(pool.map((i) => gifts[i]?.order));
+  if (distinctOrders.size < n) return [];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]] as [number, number];
   }
-  return pool.slice(0, n);
+  const picked: number[] = [];
+  const seen = new Set<number>();
+  for (const i of pool) {
+    if (picked.length >= n) break;
+    const ord = gifts[i]?.order;
+    if (typeof ord !== "number" || seen.has(ord)) continue;
+    seen.add(ord);
+    picked.push(i);
+  }
+  return picked.length === n ? picked : [];
 }
 
 /** Correct earliest→latest order, computed from configured gift order (never from display number). */

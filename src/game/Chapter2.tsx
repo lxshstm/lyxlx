@@ -23,12 +23,12 @@ export function Chapter2({ state, update, toast, next }: ChapterProps) {
   if (picked) {
     const firstIndex = correctGiftOrder(GIFTS, picked)[0];
     const first = firstIndex === undefined ? undefined : GIFTS[firstIndex];
-    if (first) hints.push(`悄悄告诉你，这四件里面，最早收到的是「${first.name}」。`);
-  } else hints.push("先点「开始回忆挑战」，看看是哪四份礼物吧。");
+    if (first) hints.push(`悄悄告诉你，这五件里面，最早收到的是「${first.name}」。`);
+  } else hints.push("先点「开始回忆挑战」，看看是哪五份礼物吧。");
 
   const begin = () => {
-    const p = pickGifts(GIFTS, 4);
-    if (p.length < 4) {
+    const p = pickGifts(GIFTS, 5);
+    if (p.length < 5) {
       toast("还没有配置足够的礼物赠送顺序，请先在配置区填写。");
       return;
     }
@@ -87,13 +87,13 @@ export function Chapter2({ state, update, toast, next }: ChapterProps) {
       <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-3 py-4">
         <div className="museum-heading">
           <Bubbu name="curator" size="md" />
-          <div className="text-center"><h2 className="font-display">爱你的八份证据</h2>
+          <div className="text-center"><h2 className="font-display">爱你的十份证据</h2>
           <p>第二章 · 礼物收藏馆</p></div>
         </div>
 
         {!picked ? (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
               {GIFTS.map((g, i) => (
                 <ShowcaseCard key={g.no} gift={g} index={i} onClick={() => {
                   sfx.tap();
@@ -110,9 +110,9 @@ export function Chapter2({ state, update, toast, next }: ChapterProps) {
         ) : (
           <div className="anim-rise">
             <p className="mb-3 text-center text-sm">
-              四份心意，一条属于我们的时间线。
+              五份心意，一条属于我们的时间线。
             </p>
-            <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mx-auto grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-5">
               {(order ?? []).map((gi, i) => {
                 const g = GIFTS[gi];
                 if (!g) return null;
@@ -129,7 +129,7 @@ export function Chapter2({ state, update, toast, next }: ChapterProps) {
       </main>
 
       <HintBar
-        task={picked ? "把四份心意按赠送时间排好" : "随便逛逛礼物收藏馆吧"}
+        task={picked ? "把五份心意按赠送时间排好" : "随便逛逛礼物收藏馆吧"}
         hints={hints}
         used={used}
         onUse={() => update((s) => ({ ...s, hints: { ...s.hints, c2: Math.min(2, used + 1) } }))}
@@ -159,12 +159,12 @@ export function Chapter2({ state, update, toast, next }: ChapterProps) {
           <p className="mt-3 text-sm leading-relaxed">
             这些礼物里，藏着我们一路走来的时间线。
             <br />
-            我悄悄挑出了四份心意。
+            我悄悄挑出了五份心意。
             <br />
             小馨，你还记得它们来到你身边的先后顺序吗？
           </p>
           <Button variant="ghost" className="btn-love mt-4 w-full" onClick={begin}>
-            看看是哪四份礼物
+            看看是哪五份礼物
           </Button>
         </Modal>
       )}

@@ -12,7 +12,7 @@ import { Toast, TopBar } from "./ui";
 const ORDER: Screen[] = ["c1", "c2", "c3", "c4", "final"];
 const TITLES: Record<string, string> = {
   c1: "心动的两个瞬间",
-  c2: "爱你的八份证据",
+  c2: "爱你的十份证据",
   c3: "我们的足迹",
   c4: "把我们拼在一起",
   final: "生日快乐，小馨",

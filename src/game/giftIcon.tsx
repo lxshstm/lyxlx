@@ -1,4 +1,4 @@
-import { Box, Briefcase, Camera, Disc3, Footprints, ShoppingBag, Watch } from "lucide-react";
+import { Box, Briefcase, Brush, Camera, CupSoda, Disc3, Footprints, ShoppingBag, Watch } from "lucide-react";
 import type { Gift } from "./config";
 
 const MAP = {
@@ -10,6 +10,8 @@ const MAP = {
   camera: Camera,
   box: Box,
   music: Disc3,
+  cup: CupSoda,
+  toothbrush: Brush,
 };
 
 export function GiftArt({ gift, large }: { gift: Gift; large?: boolean }) {

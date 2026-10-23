@@ -12,7 +12,7 @@ describe("museum update constraints", () => {
   });
   it("preserves a version 2 saved gift challenge and unlocked chapter", () => {
     const saved = { ...initialState(), v: 2, screen: "c2", unlocked: 2,
-      c2: { picked: [0, 1, 4, 5], order: [5, 1, 0, 4], solved: false }, hints: { c2: 1 } };
+      c2: { picked: [0, 1, 4, 5, 7], order: [5, 1, 0, 4, 7], solved: false }, hints: { c2: 1 } };
     const restored = sanitize(JSON.parse(JSON.stringify(saved)));
     expect(restored.v).toBe(2);
     expect(restored.screen).toBe("c2");
