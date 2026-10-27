@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Plane } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plane, X } from "lucide-react";
 import { CITIES, CITY_INTERLUDES, type City } from "./config";
 import { CHINA_PATH, MAP_H, MAP_W, project } from "./china-map";
 import { classifyCityTap } from "./logic";
@@ -12,9 +12,9 @@ const PTS = CITIES.map((c) => project(c.lon, c.lat));
 /** 一座城市可有多张回忆照片：photos 优先，旧 photo 兼容，都没有则显示地名 */
 const photosOf = (city: City): string[] => city.photos?.length ? city.photos : city.photo ? [city.photo] : [];
 
-function Film({ city, index, big }: { city: City; index: number; big?: boolean }) {
+function Film({ city, index, big, initial, onPhotoClick }: { city: City; index: number; big?: boolean; initial?: number | undefined; onPhotoClick?: (photo: number) => void }) {
   const photos = photosOf(city);
-  const [k, setK] = useState(0);
+  const [k, setK] = useState(initial ?? 0);
 
   useEffect(() => {
     if (photos.length < 2) return;
@@ -38,7 +38,8 @@ function Film({ city, index, big }: { city: City; index: number; big?: boolean }
               alt={`${city.name}的回忆 ${i + 1}/${photos.length}`}
               loading="lazy"
               className={`film-slide ${i === k ? "film-slide-on" : ""}`}
-              onClick={big && i === k ? () => step(1) : undefined}
+              onClick={onPhotoClick ? () => onPhotoClick(i) : undefined}
+              style={onPhotoClick ? { cursor: "pointer" } : undefined}
             />
           ))
         ) : (
@@ -74,6 +75,7 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
   const [shake, setShake] = useState<number | null>(null);
   const [popup, setPopup] = useState<number | null>(null);
   const [view, setView] = useState<number | null>(null);
+  const [viewPhoto, setViewPhoto] = useState<number | null>(null);
   const [win, setWin] = useState(count >= CITIES.length);
   const strip = useRef<HTMLDivElement>(null);
   const used = state.hints["c3"] ?? 0;
@@ -108,7 +110,6 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
     const n = count + 1;
     update((s) => ({ ...s, c3: { ...s.c3, count: n } }));
     setPopup(i);
-    setTimeout(() => setPopup((p) => (p === i ? null : p)), 1800);
     const interlude = CITY_INTERLUDES[n];
     if (interlude) setTimeout(() => toast(interlude), 1900);
     if (n === CITIES.length) {
@@ -235,7 +236,7 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
             >
               {count === 0 && <p className="text-xs text-muted-foreground">点亮城市后，回忆照片会收藏在这里</p>}
               {CITIES.slice(0, count).map((c, i) => (
-                <button key={c.name} onClick={() => setView(i)} className="anim-rise">
+                <button key={c.name} onClick={() => { setViewPhoto(null); setView(i); }} className="anim-rise">
                   <Film city={c} index={i} />
                 </button>
               ))}
@@ -246,16 +247,30 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
 
       {popup !== null && popupCity && (
         <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center">
-          <div style={{ animation: "rise-in .5s ease-out both" }}>
-            <Film city={popupCity} index={popup} big />
+          <div className="pointer-events-auto relative" style={{ animation: "rise-in .5s ease-out both" }}>
+            <button
+              type="button"
+              aria-label="关闭"
+              className="absolute -right-2 -top-2 z-10 inline-flex size-8 items-center justify-center rounded-full bg-card/90 text-foreground shadow-md transition active:scale-90"
+              onClick={() => setPopup(null)}
+            >
+              <X className="size-4" />
+            </button>
+            <Film city={popupCity} index={popup} big onPhotoClick={(photo) => { setViewPhoto(photo); setView(popup); }} />
             <p className="mt-2 text-center text-sm">{popupCity.memo}</p>
           </div>
         </div>
       )}
       {view !== null && viewedCity && (
-        <Modal onClose={() => setView(null)}>
+        <Modal
+          onClose={() => {
+            setView(null);
+            setViewPhoto(null);
+            setPopup(null);
+          }}
+        >
           <div className="flex flex-col items-center">
-            <Film city={viewedCity} index={view} big />
+            <Film city={viewedCity} index={view} big initial={viewPhoto ?? undefined} />
             <p className="mt-3 text-center text-sm">{viewedCity.memo}</p>
           </div>
         </Modal>

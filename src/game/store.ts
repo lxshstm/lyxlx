@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { YMD } from "./config";
 import { CITIES, GIFTS } from "./config";
 
-export type Screen = "home" | "c1" | "c2" | "c3" | "c4" | "final";
+export type Screen = "home" | "c1" | "c2" | "c3" | "c4" | "final" | "movie";
 
 export type GameState = {
   v: 2;
@@ -42,7 +42,7 @@ export function sanitize(raw: unknown): GameState {
   const d = initialState();
   if (!raw || typeof raw !== "object") return d;
   const r = raw as Partial<GameState>;
-  const screens: Screen[] = ["home", "c1", "c2", "c3", "c4", "final"];
+  const screens: Screen[] = ["home", "c1", "c2", "c3", "c4", "final", "movie"];
   const s: GameState = { ...d };
   s.unlocked = Number.isInteger(r.unlocked) ? Math.min(5, Math.max(1, r.unlocked!)) : 1;
   s.screen = screens.includes(r.screen as Screen) ? (r.screen as Screen) : "home";
@@ -68,7 +68,7 @@ export function sanitize(raw: unknown): GameState {
   s.done = !!r.done;
   s.music = r.music !== false;
   const order: Screen[] = ["c1", "c2", "c3", "c4", "final"];
-  if (s.screen !== "home" && order.indexOf(s.screen) + 1 > s.unlocked) s.screen = "home";
+  if (s.screen !== "home" && s.screen !== "movie" && order.indexOf(s.screen) + 1 > s.unlocked) s.screen = "home";
   return s;
 }
 

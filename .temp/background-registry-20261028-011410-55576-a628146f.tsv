@@ -1,0 +1,4 @@
+job_id	pid	log_file	purpose
+job-20261027-171418-68e0f67f	20224	.temp\background-registry-20261028-011410-55576-a628146f.-job-20261027-171418-68e0f67f.log	ffmpeg压缩生日电影1080P CRF20
+job-20261027-172139-6d89ce7b	12820	.temp\background-registry-20261028-011410-55576-a628146f.-job-20261027-172139-6d89ce7b.log	ffmpeg二次压缩 CRF23 maxrate2500k
+job-20261027-173012-8e022d42	23636	.temp\background-registry-20261028-011410-55576-a628146f.-job-20261027-173012-8e022d42.log	ffmpeg三轮压缩 1080P CRF23

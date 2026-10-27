@@ -7,6 +7,7 @@ import { Chapter2 } from "./Chapter2";
 import { Chapter3 } from "./Chapter3";
 import { Chapter4 } from "./Chapter4";
 import { Finale } from "./Finale";
+import { MovieScreen } from "./MovieScreen";
 import { Toast, TopBar } from "./ui";
 
 const ORDER: Screen[] = ["c1", "c2", "c3", "c4", "final"];
@@ -16,6 +17,7 @@ const TITLES: Record<string, string> = {
   c3: "我们的足迹",
   c4: "把我们拼在一起",
   final: "生日快乐，小馨",
+  movie: "一二布布的电影",
 };
 
 export function Game() {
@@ -92,7 +94,8 @@ export function Game() {
       {state.screen === "c2" && <Chapter2 key="c2" {...props} />}
       {state.screen === "c3" && <Chapter3 key="c3" {...props} />}
       {state.screen === "c4" && <Chapter4 key="c4" {...props} />}
-      {state.screen === "final" && <Finale onRestart={restart} />}
+      {state.screen === "final" && <Finale onRestart={restart} onMovie={() => go("movie")} />}
+      {state.screen === "movie" && <MovieScreen onBack={() => go("final")} />}
       <Toast text={toastText} />
     </div>
   );

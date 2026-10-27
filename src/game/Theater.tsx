@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { sfx } from "./audio";
 
 /** 终章彩蛋：一二布布小剧场 —— 点击推进的五幕无声剧，谢幕拉横幅。 */
-export function Theater({ onClose }: { onClose: () => void }) {
+export function Theater({ onClose, onMovie }: { onClose: () => void; onMovie: () => void }) {
   const total = THEATER.scenes.length;
   // act: 0 = 待开演；1..total = 第 N 幕；total + 1 = 谢幕
   const [act, setAct] = useState(0);
@@ -85,11 +85,14 @@ export function Theater({ onClose }: { onClose: () => void }) {
       )}
 
       {finished && (
-        <div className="mt-2 flex gap-3" onClick={(e) => e.stopPropagation()}>
+        <div className="mt-2 flex flex-wrap justify-center gap-3" onClick={(e) => e.stopPropagation()}>
           <Button variant="ghost" className="btn-soft" onClick={replay}>
             再演一遍
           </Button>
-          <Button variant="ghost" className="btn-love" onClick={leave}>
+          <Button variant="ghost" className="btn-love" onClick={onMovie}>
+            再来看一部布布的电影
+          </Button>
+          <Button variant="ghost" className="btn-soft" onClick={leave}>
             回到信里
           </Button>
         </div>

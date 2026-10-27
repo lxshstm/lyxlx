@@ -6,8 +6,10 @@ import { Bubbu } from "./Bubbu";
 import { Theater } from "./Theater";
 import { Button } from "@/components/ui/button";
 
-export function Finale({ onRestart }: { onRestart: () => void }) {
-  const [phase, setPhase] = useState<"box" | "opening" | "open">("box");
+export function Finale({ onRestart, onMovie }: { onRestart: () => void; onMovie: () => void }) {
+  const [phase, setPhase] = useState<"box" | "opening" | "open">(() =>
+    sessionStorage.getItem("finale-box-opened") === "1" ? "open" : "box",
+  );
   const [secret, setSecret] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [theater, setTheater] = useState(false);
@@ -28,6 +30,7 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
   }, [slide]);
 
   const open = () => {
+    sessionStorage.setItem("finale-box-opened", "1");
     sfx.bloom();
     setPhase("opening");
     setTimeout(() => {
@@ -133,16 +136,28 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
         </p>
 
         <div className="mt-6 flex flex-col items-center gap-6">
-          <Button
-            variant="ghost"
-            className="btn-love"
-            onClick={() => {
-              sfx.bloom();
-              setTheater(true);
-            }}
-          >
-            布布一二小剧场！
-          </Button>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button
+              variant="ghost"
+              className="btn-love"
+              onClick={() => {
+                sfx.bloom();
+                setTheater(true);
+              }}
+            >
+              布布一二小剧场！
+            </Button>
+            <Button
+              variant="ghost"
+              className="btn-love"
+              onClick={() => {
+                sfx.bloom();
+                onMovie();
+              }}
+            >
+              再看一部布布的电影
+            </Button>
+          </div>
           <Button variant="ghost" className="btn-soft" onClick={() => setConfirm(true)}>
             再陪我回忆一次
           </Button>
@@ -169,7 +184,7 @@ export function Finale({ onRestart }: { onRestart: () => void }) {
           </div>
         </Modal>
       )}
-      {theater && <Theater onClose={() => setTheater(false)} />}
+      {theater && <Theater onClose={() => setTheater(false)} onMovie={onMovie} />}
       {bigPhoto && (
         <Modal onClose={() => setBig(null)}>
           <img src={bigPhoto.src} alt={bigPhoto.caption} className="w-full rounded-lg" />

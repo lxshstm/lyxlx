@@ -16,6 +16,139 @@ import gift07 from "@/assets/gifts/gift-07.jpg";
 import gift08 from "@/assets/gifts/gift-08.jpg";
 import gift09 from "@/assets/gifts/gift-09.jpg";
 import gift10 from "@/assets/gifts/gift-10.jpg";
+import qhd01 from "@/assets/cities/qhd-01.jpg";
+import qhd02 from "@/assets/cities/qhd-02.jpg";
+import qhd03 from "@/assets/cities/qhd-03.jpg";
+import bj01 from "@/assets/cities/bj-01.jpg";
+import bj02 from "@/assets/cities/bj-02.jpg";
+import bj03 from "@/assets/cities/bj-03.jpg";
+import bj04 from "@/assets/cities/bj-04.jpg";
+import bj05 from "@/assets/cities/bj-05.jpg";
+import bj06 from "@/assets/cities/bj-06.jpg";
+import qd01 from "@/assets/cities/qd-01.jpg";
+import qd02 from "@/assets/cities/qd-02.jpg";
+import qd03 from "@/assets/cities/qd-03.jpg";
+import qd04 from "@/assets/cities/qd-04.jpg";
+import qd05 from "@/assets/cities/qd-05.jpg";
+import qd06 from "@/assets/cities/qd-06.jpg";
+import qd07 from "@/assets/cities/qd-07.jpg";
+import qd08 from "@/assets/cities/qd-08.jpg";
+import qd09 from "@/assets/cities/qd-09.jpg";
+import qd10 from "@/assets/cities/qd-10.jpg";
+import qd11 from "@/assets/cities/qd-11.jpg";
+import wh01 from "@/assets/cities/wh-01.jpg";
+import wh02 from "@/assets/cities/wh-02.jpg";
+import wh03 from "@/assets/cities/wh-03.jpg";
+import wh04 from "@/assets/cities/wh-04.jpg";
+import wh05 from "@/assets/cities/wh-05.jpg";
+import wh06 from "@/assets/cities/wh-06.jpg";
+import wh07 from "@/assets/cities/wh-07.jpg";
+import wh08 from "@/assets/cities/wh-08.jpg";
+import wh09 from "@/assets/cities/wh-09.jpg";
+import wh10 from "@/assets/cities/wh-10.jpg";
+import wh11 from "@/assets/cities/wh-11.jpg";
+import tj01 from "@/assets/cities/tj-01.jpg";
+import tj02 from "@/assets/cities/tj-02.jpg";
+import tj03 from "@/assets/cities/tj-03.jpg";
+import tj04 from "@/assets/cities/tj-04.jpg";
+import tj05 from "@/assets/cities/tj-05.jpg";
+import tj06 from "@/assets/cities/tj-06.jpg";
+import tj07 from "@/assets/cities/tj-07.jpg";
+import tj08 from "@/assets/cities/tj-08.jpg";
+import tj09 from "@/assets/cities/tj-09.jpg";
+import tj10 from "@/assets/cities/tj-10.jpg";
+import tj11 from "@/assets/cities/tj-11.jpg";
+import fy01 from "@/assets/cities/fy-01.jpg";
+import fy02 from "@/assets/cities/fy-02.jpg";
+import fy03 from "@/assets/cities/fy-03.jpg";
+import fy04 from "@/assets/cities/fy-04.jpg";
+import fy05 from "@/assets/cities/fy-05.jpg";
+import fy06 from "@/assets/cities/fy-06.jpg";
+import fy07 from "@/assets/cities/fy-07.jpg";
+import fy08 from "@/assets/cities/fy-08.jpg";
+import fy09 from "@/assets/cities/fy-09.jpg";
+import fy10 from "@/assets/cities/fy-10.jpg";
+import fy11 from "@/assets/cities/fy-11.jpg";
+import fy12 from "@/assets/cities/fy-12.jpg";
+import fy13 from "@/assets/cities/fy-13.jpg";
+import fy14 from "@/assets/cities/fy-14.jpg";
+import fy15 from "@/assets/cities/fy-15.jpg";
+import fy16 from "@/assets/cities/fy-16.jpg";
+import fy17 from "@/assets/cities/fy-17.jpg";
+import wuhu01 from "@/assets/cities/wuhu-01.jpg";
+import wuhu02 from "@/assets/cities/wuhu-02.jpg";
+import wuhu03 from "@/assets/cities/wuhu-03.jpg";
+import wuhu04 from "@/assets/cities/wuhu-04.jpg";
+import wuhu05 from "@/assets/cities/wuhu-05.jpg";
+import wuhu06 from "@/assets/cities/wuhu-06.jpg";
+import wuhu07 from "@/assets/cities/wuhu-07.jpg";
+import hn01 from "@/assets/cities/hn-01.jpg";
+import hn02 from "@/assets/cities/hn-02.jpg";
+import hn03 from "@/assets/cities/hn-03.jpg";
+import hn04 from "@/assets/cities/hn-04.jpg";
+import hn05 from "@/assets/cities/hn-05.jpg";
+import hn06 from "@/assets/cities/hn-06.jpg";
+import hn07 from "@/assets/cities/hn-07.jpg";
+import hn08 from "@/assets/cities/hn-08.jpg";
+import hn09 from "@/assets/cities/hn-09.jpg";
+import hn10 from "@/assets/cities/hn-10.jpg";
+import hf01 from "@/assets/cities/hf-01.jpg";
+import hf02 from "@/assets/cities/hf-02.jpg";
+import hf03 from "@/assets/cities/hf-03.jpg";
+import hf04 from "@/assets/cities/hf-04.jpg";
+import zz01 from "@/assets/cities/zz-01.jpg";
+import zz02 from "@/assets/cities/zz-02.jpg";
+import zz03 from "@/assets/cities/zz-03.jpg";
+import zz04 from "@/assets/cities/zz-04.jpg";
+import km01 from "@/assets/cities/km-01.jpg";
+import km02 from "@/assets/cities/km-02.jpg";
+import km03 from "@/assets/cities/km-03.jpg";
+import km04 from "@/assets/cities/km-04.jpg";
+import xsbn01 from "@/assets/cities/xsbn-01.jpg";
+import xsbn02 from "@/assets/cities/xsbn-02.jpg";
+import xsbn03 from "@/assets/cities/xsbn-03.jpg";
+import xsbn04 from "@/assets/cities/xsbn-04.jpg";
+import xsbn05 from "@/assets/cities/xsbn-05.jpg";
+import xsbn06 from "@/assets/cities/xsbn-06.jpg";
+import xsbn07 from "@/assets/cities/xsbn-07.jpg";
+import xsbn08 from "@/assets/cities/xsbn-08.jpg";
+import xsbn09 from "@/assets/cities/xsbn-09.jpg";
+import xsbn10 from "@/assets/cities/xsbn-10.jpg";
+import xsbn11 from "@/assets/cities/xsbn-11.jpg";
+import xsbn12 from "@/assets/cities/xsbn-12.jpg";
+import xsbn13 from "@/assets/cities/xsbn-13.jpg";
+import xsbn14 from "@/assets/cities/xsbn-14.jpg";
+import xsbn15 from "@/assets/cities/xsbn-15.jpg";
+import xsbn16 from "@/assets/cities/xsbn-16.jpg";
+import xgll01 from "@/assets/cities/xgll-01.jpg";
+import xgll02 from "@/assets/cities/xgll-02.jpg";
+import xgll03 from "@/assets/cities/xgll-03.jpg";
+import xgll04 from "@/assets/cities/xgll-04.jpg";
+import xgll05 from "@/assets/cities/xgll-05.jpg";
+import xgll06 from "@/assets/cities/xgll-06.jpg";
+import xgll07 from "@/assets/cities/xgll-07.jpg";
+import xgll08 from "@/assets/cities/xgll-08.jpg";
+import xgll09 from "@/assets/cities/xgll-09.jpg";
+import xgll10 from "@/assets/cities/xgll-10.jpg";
+import xgll11 from "@/assets/cities/xgll-11.jpg";
+import xgll12 from "@/assets/cities/xgll-12.jpg";
+import xgll13 from "@/assets/cities/xgll-13.jpg";
+import xgll14 from "@/assets/cities/xgll-14.jpg";
+import xgll15 from "@/assets/cities/xgll-15.jpg";
+import xgll16 from "@/assets/cities/xgll-16.jpg";
+import lj01 from "@/assets/cities/lj-01.jpg";
+import lj02 from "@/assets/cities/lj-02.jpg";
+import lj03 from "@/assets/cities/lj-03.jpg";
+import lj04 from "@/assets/cities/lj-04.jpg";
+import lj05 from "@/assets/cities/lj-05.jpg";
+import lj06 from "@/assets/cities/lj-06.jpg";
+import lj07 from "@/assets/cities/lj-07.jpg";
+import lj08 from "@/assets/cities/lj-08.jpg";
+import lj09 from "@/assets/cities/lj-09.jpg";
+import lj10 from "@/assets/cities/lj-10.jpg";
+import lj11 from "@/assets/cities/lj-11.jpg";
+import lj12 from "@/assets/cities/lj-12.jpg";
+import lj13 from "@/assets/cities/lj-13.jpg";
 import bubbuSeal from "@/assets/bubbu/bubbu-seal.gif";
 import bubbuCurator from "@/assets/bubbu/bubbu-curator.gif";
 import bubbuPeek from "@/assets/bubbu/bubbu-peek.gif";
@@ -284,6 +417,7 @@ export const CITIES: City[] = [
     lat: 32.63,
     dx: 34,
     dy: -24,
+    photos: [hn01, hn02, hn03, hn04, hn05, hn06, hn07, hn08, hn09, hn10],
     memo: "一切开始的地方。",
   },
   {
@@ -293,6 +427,7 @@ export const CITIES: City[] = [
     lat: 31.86,
     dx: 36,
     dy: 20,
+    photos: [hf01, hf02, hf03, hf04],
     memo: "省会的街头，也有我们的笑声。",
   },
   {
@@ -302,7 +437,18 @@ export const CITIES: City[] = [
     lat: 32.89,
     dx: -40,
     dy: 4,
+    photos: [fy01, fy02, fy03, fy04, fy05, fy06, fy07, fy08, fy09, fy10, fy11, fy12, fy13, fy14, fy15, fy16, fy17],
     memo: "平平常常的一天，因为有你变得很甜。",
+  },
+  {
+    name: "芜湖",
+    province: "安徽",
+    lon: 118.38,
+    lat: 31.33,
+    dx: -38,
+    dy: 44,
+    photos: [wuhu01, wuhu02, wuhu03, wuhu04, wuhu05, wuhu06, wuhu07],
+    memo: "半城山半城水，都记着我们的脚印。",
   },
   {
     name: "青岛",
@@ -311,6 +457,7 @@ export const CITIES: City[] = [
     lat: 36.07,
     dx: 30,
     dy: 22,
+    photos: [qd01, qd02, qd03, qd04, qd05, qd06, qd07, qd08, qd09, qd10, qd11],
     memo: "海风和你，都刚刚好。",
   },
   {
@@ -320,6 +467,7 @@ export const CITIES: City[] = [
     lat: 37.51,
     dx: 26,
     dy: -20,
+    photos: [wh01, wh02, wh03, wh04, wh05, wh06, wh07, wh08, wh09, wh10, wh11],
     memo: "最干净的海，配最可爱的你。",
   },
   {
@@ -329,6 +477,7 @@ export const CITIES: City[] = [
     lat: 39.9,
     dx: -38,
     dy: -20,
+    photos: [bj01, bj02, bj03, bj04, bj05, bj06],
     memo: "在很大的城市里，只看得见你。",
   },
   {
@@ -338,6 +487,7 @@ export const CITIES: City[] = [
     lat: 39.93,
     dx: 36,
     dy: -16,
+    photos: [qhd01, qhd02, qhd03],
     memo: "一起看过的海，一直记得。",
   },
   {
@@ -347,6 +497,7 @@ export const CITIES: City[] = [
     lat: 39.13,
     dx: -34,
     dy: 22,
+    photos: [tj01, tj02, tj03, tj04, tj05, tj06, tj07, tj08, tj09, tj10, tj11],
     memo: "走累了，就靠在我身边。",
   },
   {
@@ -356,6 +507,7 @@ export const CITIES: City[] = [
     lat: 34.75,
     dx: -38,
     dy: 0,
+    photos: [zz01, zz02, zz03, zz04],
     memo: "中原的风，吹过我们的旅程。",
   },
   {
@@ -365,6 +517,7 @@ export const CITIES: City[] = [
     lat: 24.88,
     dx: 38,
     dy: 6,
+    photos: [km01, km02, km03, km04],
     memo: "春城的花，没有你好看。",
   },
   {
@@ -374,6 +527,7 @@ export const CITIES: City[] = [
     lat: 22.0,
     dx: 0,
     dy: 26,
+    photos: [xsbn01, xsbn02, xsbn03, xsbn04, xsbn05, xsbn06, xsbn07, xsbn08, xsbn09, xsbn10, xsbn11, xsbn12, xsbn13, xsbn14, xsbn15, xsbn16],
     memo: "热带的阳光，和你一样温暖。",
   },
   {
@@ -383,6 +537,7 @@ export const CITIES: City[] = [
     lat: 26.87,
     dx: 36,
     dy: -6,
+    photos: [lj01, lj02, lj03, lj04, lj05, lj06, lj07, lj08, lj09, lj10, lj11, lj12, lj13],
     memo: "古城的石板路，我们慢慢走。",
   },
   {
@@ -392,18 +547,30 @@ export const CITIES: City[] = [
     lat: 27.83,
     dx: -30,
     dy: -24,
+    photos: [xgll02, xgll01, xgll03, xgll04, xgll05, xgll06, xgll07, xgll08, xgll09, xgll10, xgll11, xgll12, xgll13, xgll14, xgll15, xgll16],
     memo: "离天空很近的地方，许下很远的愿望。",
   },
 ];
 
 export const CITY_INTERLUDES: Record<number, string> = {
-  3: "原来我们的故事，从安徽就开始发光了。",
-  6: "海边和京城，都留下了我们的脚印。",
-  9: "走了这么远，你一直都在我身边。",
+  4: "原来我们的故事，从安徽就开始发光了。",
+  7: "海边和京城，都留下了我们的脚印。",
+  10: "走了这么远，你一直都在我身边。",
 };
 
 /* ---------------- 第四关 ---------------- */
 export const CHAPTER4 = { photo: couple, size: 3 };
+
+/* ---------------- 特别放映 ---------------- */
+export const MOVIE = {
+  src: "/video/bubbu-movie.mp4",
+  intro: [
+    "这一部小小的电影，",
+    "是布布偷偷准备了很久的礼物。",
+    "找个舒服的姿势，电影开场啦！",
+  ],
+  end: "电影放完啦 —— 故事未完待续。",
+};
 
 /* ---------------- 最终关 ---------------- */
 export const FINALE = {
