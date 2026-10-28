@@ -6,6 +6,13 @@ import sceneMeet from "@/assets/scene-meet.jpg";
 import sceneConfess from "@/assets/scene-confess.jpg";
 import sceneConfessDetail from "@/assets/scene-confess-detail.jpg";
 import couple from "@/assets/couple.jpg";
+import puzzle1111 from "@/assets/puzzle-1111.jpg";
+import finale01 from "@/assets/finale/finale-01.jpg";
+import finale02 from "@/assets/finale/finale-02.jpg";
+import finale03 from "@/assets/finale/finale-03.jpg";
+import finale04 from "@/assets/finale/finale-04.jpg";
+import finale05 from "@/assets/finale/finale-05.jpg";
+import finale06 from "@/assets/finale/finale-06.jpg";
 import gift01 from "@/assets/gifts/gift-01.jpg";
 import gift02 from "@/assets/gifts/gift-02.jpg";
 import gift03 from "@/assets/gifts/gift-03.jpg";
@@ -389,9 +396,9 @@ export const GIFTS: Gift[] = [
     name: "usmile 电动牙刷",
     icon: "toothbrush",
     image: gift10,
-    order: 1,
+    order: 6,
     text: "想让你每天早晚的笑容，都干干净净、亮亮晶晶。",
-  }, // 2024-08-09 · 七夕，与 03 同一天
+  }, // 2025-12-30 · 与 05 骆驼鞋子同一天
 ];
 
 /* ---------------- 第三关 ---------------- */
@@ -559,7 +566,7 @@ export const CITY_INTERLUDES: Record<number, string> = {
 };
 
 /* ---------------- 第四关 ---------------- */
-export const CHAPTER4 = { photo: couple, size: 3 };
+export const CHAPTER4 = { photo: puzzle1111, size: 3 };
 
 /* ---------------- 特别放映 ---------------- */
 export const MOVIE = {
@@ -578,6 +585,12 @@ export const FINALE = {
     { src: couple, caption: "我们" },
     { src: sceneMeet, caption: "初见" },
     { src: sceneConfess, caption: "告白" },
+    { src: finale01, caption: "投喂" },
+    { src: finale02, caption: "比心" },
+    { src: finale03, caption: "祈愿" },
+    { src: finale04, caption: "回忆" },
+    { src: finale05, caption: "同行" },
+    { src: finale06, caption: "远方" },
   ],
   letterTitle: "写给我的小馨",
   letter: [

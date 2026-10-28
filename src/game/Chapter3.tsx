@@ -12,15 +12,31 @@ const PTS = CITIES.map((c) => project(c.lon, c.lat));
 /** 一座城市可有多张回忆照片：photos 优先，旧 photo 兼容，都没有则显示地名 */
 const photosOf = (city: City): string[] => city.photos?.length ? city.photos : city.photo ? [city.photo] : [];
 
-function Film({ city, index, big, initial, onPhotoClick }: { city: City; index: number; big?: boolean; initial?: number | undefined; onPhotoClick?: (photo: number) => void }) {
+function Film({
+  city,
+  index,
+  big,
+  initial,
+  autoPlay = true,
+  widthClass,
+  onPhotoClick,
+}: {
+  city: City;
+  index: number;
+  big?: boolean;
+  initial?: number | undefined;
+  autoPlay?: boolean;
+  widthClass?: string;
+  onPhotoClick?: (photo: number) => void;
+}) {
   const photos = photosOf(city);
   const [k, setK] = useState(initial ?? 0);
 
   useEffect(() => {
-    if (photos.length < 2) return;
+    if (!autoPlay || photos.length < 2) return;
     const t = setInterval(() => setK((v) => (v + 1) % photos.length), 2600);
     return () => clearInterval(t);
-  }, [photos.length]);
+  }, [photos.length, autoPlay]);
 
   const step = (d: number) => {
     if (photos.length < 2) return;
@@ -28,7 +44,10 @@ function Film({ city, index, big, initial, onPhotoClick }: { city: City; index: 
   };
 
   return (
-    <div className={`film ${big ? "w-64" : "w-24 shrink-0"}`} style={{ transform: `rotate(${index % 2 ? 2 : -2}deg)` }}>
+    <div
+      className={`film ${widthClass ?? (big ? "w-64" : "w-24 shrink-0")}`}
+      style={{ transform: `rotate(${index % 2 ? 2 : -2}deg)` }}
+    >
       <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm bg-sky">
         {photos.length > 0 ? (
           photos.map((p, i) => (
@@ -263,14 +282,21 @@ export function Chapter3({ state, update, toast, next }: ChapterProps) {
       )}
       {view !== null && viewedCity && (
         <Modal
+          size="lg"
           onClose={() => {
             setView(null);
             setViewPhoto(null);
-            setPopup(null);
           }}
         >
           <div className="flex flex-col items-center">
-            <Film city={viewedCity} index={view} big initial={viewPhoto ?? undefined} />
+            <Film
+              city={viewedCity}
+              index={view}
+              big
+              initial={viewPhoto ?? undefined}
+              autoPlay={false}
+              widthClass="w-full max-w-[52dvh]"
+            />
             <p className="mt-3 text-center text-sm">{viewedCity.memo}</p>
           </div>
         </Modal>

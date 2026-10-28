@@ -1,2 +1,4 @@
 job_id	pid	log_file	purpose
 job-20261027-130649-f010706b	76180	.temp\background-registry-20261027-210643-68108-784b3ce4.-job-20261027-130649-f010706b.log	启动lyxlx dev server 端口5199
+job-20261028-051043-571c5472	25672	.temp\background-registry-20261027-210643-68108-784b3ce4.-job-20261028-051043-571c5472.log	重启lyxlx dev server 端口5199
+job-20261028-121421-fd03d371	19048	.temp\background-registry-20261027-210643-68108-784b3ce4.-job-20261028-121421-fd03d371.log	重启lyxlx dev server 5199

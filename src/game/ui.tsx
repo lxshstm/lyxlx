@@ -153,10 +153,22 @@ export function HintBar({
   );
 }
 
-export function Modal({ children, onClose }: { children: ReactNode; onClose: () => void }) {
+export function Modal({
+  children,
+  onClose,
+  size = "sm",
+}: {
+  children: ReactNode;
+  onClose: () => void;
+  size?: "sm" | "lg";
+}) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay p-4 anim-rise" onClick={onClose}>
-      <div className="paper-card relative max-h-[85dvh] w-full max-w-sm overflow-y-auto p-5" onClick={(e) => e.stopPropagation()} role="dialog">
+      <div
+        className={`paper-card relative max-h-[85dvh] w-full overflow-y-auto p-5 ${size === "lg" ? "max-w-3xl" : "max-w-sm"}`}
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+      >
         <Button variant="ghost" className="btn-icon absolute right-2 top-2" onClick={onClose} aria-label="关闭">
           <X className="size-4" />
         </Button>

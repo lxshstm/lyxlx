@@ -94,6 +94,7 @@ export function Finale({ onRestart, onMovie }: { onRestart: () => void; onMovie:
                     alt={p.caption}
                     loading="lazy"
                     className="aspect-square w-full rounded-sm object-cover"
+                    style={{ imageRendering: "-webkit-optimize-contrast" }}
                   />
                   <p className="mt-2 font-display text-sm">{p.caption}</p>
                 </Button>
@@ -186,8 +187,12 @@ export function Finale({ onRestart, onMovie }: { onRestart: () => void; onMovie:
       )}
       {theater && <Theater onClose={() => setTheater(false)} onMovie={onMovie} />}
       {bigPhoto && (
-        <Modal onClose={() => setBig(null)}>
-          <img src={bigPhoto.src} alt={bigPhoto.caption} className="w-full rounded-lg" />
+        <Modal onClose={() => setBig(null)} size="lg">
+          <img
+            src={bigPhoto.src}
+            alt={bigPhoto.caption}
+            className="mx-auto max-h-[68dvh] w-auto max-w-full rounded-lg object-contain"
+          />
         </Modal>
       )}
       {confirm && (
