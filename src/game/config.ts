@@ -563,7 +563,7 @@ export const CHAPTER4 = { photo: couple, size: 3 };
 
 /* ---------------- 特别放映 ---------------- */
 export const MOVIE = {
-  src: "/video/bubbu-movie.mp4",
+  src: `${import.meta.env.BASE_URL}video/bubbu-movie.mp4`,
   intro: [
     "这一部小小的电影，",
     "是布布偷偷准备了很久的礼物。",
